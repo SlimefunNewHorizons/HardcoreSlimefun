@@ -6,3 +6,9 @@ author: WalshyDev, TheBusyBiscuit
 website: https://github.com/Slimefun-Addon-Community/HardcoreSlimefun
 main: dev.walshy.hardcoreslimefun.HardcoreSlimefun
 depend: [Slimefun]
+
+commands:
+  hardcoresf:
+    description: Administrar y alternar HardcoreSlimefun en caliente
+    aliases: [hsf]
+    permission: hardcoreslimefun.admin

@@ -20,6 +20,7 @@ public class Events implements Listener {
      */
     @EventHandler
     public void onDeath(@Nonnull PlayerDeathEvent event) {
+        if (!Config.INSTANCE.isEnabled()) return;
         PlayerProfile.get(event.getEntity(), profile -> {
             final boolean shouldResetAllResearches = Utils.chance(Config.INSTANCE.getResetAllResearchesOnDeath());
 
@@ -48,6 +49,7 @@ public class Events implements Listener {
      */
     @EventHandler
     public void onResearch(@Nonnull ResearchUnlockEvent event) {
+        if (!Config.INSTANCE.isEnabled()) return;
         final boolean shouldResearchFail = Utils.chance(Config.INSTANCE.getResearchFailChance());
 
         if (shouldResearchFail) {

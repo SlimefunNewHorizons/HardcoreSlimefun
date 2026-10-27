@@ -1,5 +1,8 @@
+# Activar o desactivar las mecánicas de HardcoreSlimefun (por defecto apagado en producción)
+enabled: false
+
 # Activar actualizaciones automáticas
-auto-update: true
+auto-update: false
 on-death:
   # empezar atrue, el jugador perderá una investigación aleatoria sobre la muerte.
   reset-random-research: true

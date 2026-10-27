@@ -28,6 +28,7 @@ public class AndroidEvents implements Listener {
 
     @EventHandler
     public void onAndroidMine(@Nonnull AndroidMineEvent event) {
+        if (!Config.INSTANCE.isEnabled()) return;
         if (Utils.chance(Config.INSTANCE.getMalfunctionChance())) {
             setMalfunctioned(event.getAndroid());
         }
@@ -35,6 +36,7 @@ public class AndroidEvents implements Listener {
 
     @EventHandler
     public void onAndroidFarm(@Nonnull AndroidFarmEvent event) {
+        if (!Config.INSTANCE.isEnabled()) return;
         if (Utils.chance(Config.INSTANCE.getMalfunctionChance())) {
             setMalfunctioned(event.getAndroid());
         }

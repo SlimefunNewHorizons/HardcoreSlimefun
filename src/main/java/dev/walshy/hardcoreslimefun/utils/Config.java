@@ -10,6 +10,9 @@ public class Config {
 
     public static final Config INSTANCE = new Config();
 
+    // enabled (master toggle)
+    private boolean enabled;
+
     // on-death.reset-random-research
     private boolean resetResearchOnDeath;
     // on-death.chance-to-reset-all-researches
@@ -36,6 +39,7 @@ public class Config {
     private String androidMalfunctioned;
 
     public void load(@Nonnull FileConfiguration config) {
+        enabled = config.getBoolean("enabled", false);
         resetResearchOnDeath = config.getBoolean("on-death.reset-random-research", true);
         resetAllResearchesOnDeath = getPercent(config, "on-death.chance-to-reset-all-researches", 5);
 

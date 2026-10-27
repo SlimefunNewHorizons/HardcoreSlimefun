@@ -45,6 +45,54 @@ public class HardcoreSlimefun extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new Events(), this);
         getServer().getPluginManager().registerEvents(new AndroidEvents(), this);
+
+        if (getCommand("hardcoresf") != null) {
+            getCommand("hardcoresf").setExecutor(this);
+        }
+    }
+
+    @Override
+    public boolean onCommand(org.bukkit.command.CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+        if (!sender.hasPermission("hardcoreslimefun.admin")) {
+            sender.sendMessage("§cNo tienes permiso para administrar HardcoreSlimefun.");
+            return true;
+        }
+
+        if (args.length > 0 && args[0].equalsIgnoreCase("toggle")) {
+            boolean next = !Config.INSTANCE.isEnabled();
+            getConfig().set("enabled", next);
+            saveConfig();
+            Config.INSTANCE.load(getConfig());
+            sender.sendMessage("§6[HardcoreSlimefun] §eMecánicas " + (next ? "§aACTIVADAS" : "§cDESACTIVADAS"));
+            return true;
+        }
+
+        if (args.length > 0 && (args[0].equalsIgnoreCase("on") || args[0].equalsIgnoreCase("enable"))) {
+            getConfig().set("enabled", true);
+            saveConfig();
+            Config.INSTANCE.load(getConfig());
+            sender.sendMessage("§6[HardcoreSlimefun] §aMecánicas ACTIVADAS.");
+            return true;
+        }
+
+        if (args.length > 0 && (args[0].equalsIgnoreCase("off") || args[0].equalsIgnoreCase("disable"))) {
+            getConfig().set("enabled", false);
+            saveConfig();
+            Config.INSTANCE.load(getConfig());
+            sender.sendMessage("§6[HardcoreSlimefun] §cMecánicas DESACTIVADAS.");
+            return true;
+        }
+
+        if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
+            reloadConfig();
+            Config.INSTANCE.load(getConfig());
+            sender.sendMessage("§6[HardcoreSlimefun] §aConfiguración recargada. Estado actual: " + (Config.INSTANCE.isEnabled() ? "§aACTIVADO" : "§cDESACTIVADO"));
+            return true;
+        }
+
+        sender.sendMessage("§6[HardcoreSlimefun] §eEstado actual: " + (Config.INSTANCE.isEnabled() ? "§aACTIVADO" : "§cDESACTIVADO"));
+        sender.sendMessage("§7Uso: /hardcoresf <toggle | on | off | reload>");
+        return true;
     }
 
     @Override
